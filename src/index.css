@@ -25,6 +25,9 @@ if you conflict with <h> no style, you can see https://tailwindcss.com/docs/pref
   h5 {
     @apply text-base;
   }
+  :root {
+    --radius: 0.5rem;
+  }
 }
 
 html,
