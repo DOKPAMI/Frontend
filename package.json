@@ -15,6 +15,7 @@
     "postinstall": "npx simple-git-hooks"
   },
   "dependencies": {
+    "@radix-ui/react-slider": "^1.2.3",
     "@tanstack/react-query": "^4.33.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

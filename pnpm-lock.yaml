@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@radix-ui/react-slider':
+        specifier: ^1.2.3
+        version: 1.2.3(@types/react-dom@https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz)(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react-dom@https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz))(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
       '@tanstack/react-query':
         specifier: ^4.33.0
         version: https://registry.npmmirror.com/@tanstack/react-query/-/react-query-4.33.0.tgz(react-dom@https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz))(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
@@ -603,6 +606,144 @@ packages:
     resolution: {integrity: sha512-POgTXhjrTfbTV63DiFXav4lBHiICLKKwDeaKn9Nphwj7WH6m0hMMCaJkMyRWjgtPFyRKRVoMXXjczsTQRDEhYw==, tarball: https://registry.npmmirror.com/@pkgr/utils/-/utils-2.4.2.tgz}
     version: 2.4.2
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
+
+  '@radix-ui/number@1.1.0':
+    resolution: {integrity: sha512-V3gRzhVNU1ldS5XhAPTom1fOIo4ccrjjJgmE+LI2h/WaFpHmx0MQApT+KZHnx8abG6Avtfcz4WoEciMnpFT3HQ==}
+
+  '@radix-ui/primitive@1.1.1':
+    resolution: {integrity: sha512-SJ31y+Q/zAyShtXJc8x83i9TYdbAfHZ++tUZnvjJJqFjzsdUnKsxPL6IEtBlxKkU7yzer//GQtZSV4GbldL3YA==}
+
+  '@radix-ui/react-collection@1.1.2':
+    resolution: {integrity: sha512-9z54IEKRxIa9VityapoEYMuByaG42iSy1ZXlY2KcuLSEtq8x4987/N6m15ppoMffgZX72gER2uHe1D9Y6Unlcw==}
+    version: 1.1.2
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
+  '@radix-ui/react-compose-refs@1.1.1':
+    resolution: {integrity: sha512-Y9VzoRDSJtgFMUCoiZBDVo084VQ5hfpXxVE+NgkdNsjiDBByiImMZKKhxMwCbdHvhlENG6a833CbFkOQvTricw==}
+    version: 1.1.1
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-context@1.1.1':
+    resolution: {integrity: sha512-UASk9zi+crv9WteK/NU4PLvOoL3OuE6BWVKNF6hPRBtYBDXQ2u5iu3O59zUlJiTVvkyuycnqrztsHVJwcK9K+Q==}
+    version: 1.1.1
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-direction@1.1.0':
+    resolution: {integrity: sha512-BUuBvgThEiAXh2DWu93XsT+a3aWrGqolGlqqw5VU1kG7p/ZH2cuDlM1sRLNnY3QcBS69UIz2mcKhMxDsdewhjg==}
+    version: 1.1.0
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-primitive@2.0.2':
+    resolution: {integrity: sha512-Ec/0d38EIuvDF+GZjcMU/Ze6MxntVJYO/fRlCPhCaVUyPY9WTalHJw54tp9sXeJo3tlShWpy41vQRgLRGOuz+w==}
+    version: 2.0.2
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
+  '@radix-ui/react-slider@1.2.3':
+    resolution: {integrity: sha512-nNrLAWLjGESnhqBqcCNW4w2nn7LxudyMzeB6VgdyAnFLC6kfQgnAjSL2v6UkQTnDctJBlxrmxfplWS4iYjdUTw==}
+    version: 1.2.3
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+
+  '@radix-ui/react-slot@1.1.2':
+    resolution: {integrity: sha512-YAKxaiGsSQJ38VzKH86/BPRC4rh+b1Jpa+JneA5LRE7skmLPNAyeG8kPJj/oo4STLvlrs8vkf/iYyc3A5stYCQ==}
+    version: 1.1.2
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-use-callback-ref@1.1.0':
+    resolution: {integrity: sha512-CasTfvsy+frcFkbXtSJ2Zu9JHpN8TYKxkgJGWbjiZhFivxaeW7rMeZt7QELGVLaYVfFMsKHjb7Ak0nMEe+2Vfw==}
+    version: 1.1.0
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-use-controllable-state@1.1.0':
+    resolution: {integrity: sha512-MtfMVJiSr2NjzS0Aa90NPTnvTSg6C/JLCV7ma0W6+OMV78vd8OyRpID+Ng9LxzsPbLeuBnWBA1Nq30AtBIDChw==}
+    version: 1.1.0
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-use-layout-effect@1.1.0':
+    resolution: {integrity: sha512-+FPE0rOdziWSrH9athwI1R0HDVbWlEhd+FR+aSDk4uWGmSJ9Z54sdZVDQPZAinJhJXwfT+qnj969mCsT2gfm5w==}
+    version: 1.1.0
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-use-previous@1.1.0':
+    resolution: {integrity: sha512-Z/e78qg2YFnnXcW88A4JmTtm4ADckLno6F7OXotmkQfeuCVaKuYzqAATPhVzl3delXE7CxIV8shofPn3jPc5Og==}
+    version: 1.1.0
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+
+  '@radix-ui/react-use-size@1.1.0':
+    resolution: {integrity: sha512-XW3/vWuIXHa+2Uwcc2ABSfcCledmXhhQPlGbfcRXbiUQI5Icjcg19BGCZVKKInYbvUCut/ufbbLLPFC5cbb1hw==}
+    version: 1.1.0
+    peerDependencies:
+      '@types/react': '*'
+      react: ^16.8 || ^17.0 || ^18.0 || ^19.0 || ^19.0.0-rc
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
 
   '@remix-run/router@https://registry.npmmirror.com/@remix-run/router/-/router-1.8.0.tgz':
     resolution: {integrity: sha512-mrfKqIHnSZRyIzBcanNJmVQELTnX+qagEDlcKO90RgRBVOZGSGvZKeDihTRfWcqoDn5N/NkUcwWTccnpN18Tfg==, tarball: https://registry.npmmirror.com/@remix-run/router/-/router-1.8.0.tgz}
@@ -4338,6 +4479,107 @@ snapshots:
       open: https://registry.npmmirror.com/open/-/open-9.1.0.tgz
       picocolors: https://registry.npmmirror.com/picocolors/-/picocolors-1.0.0.tgz
       tslib: https://registry.npmmirror.com/tslib/-/tslib-2.6.1.tgz
+
+  '@radix-ui/number@1.1.0': {}
+
+  '@radix-ui/primitive@1.1.1': {}
+
+  '@radix-ui/react-collection@1.1.2(@types/react-dom@https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz)(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react-dom@https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz))(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      '@radix-ui/react-compose-refs': 1.1.1(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-context': 1.1.1(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz)(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react-dom@https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz))(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-slot': 1.1.2(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+      react-dom: https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+      '@types/react-dom': https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz
+
+  '@radix-ui/react-compose-refs@1.1.1(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+
+  '@radix-ui/react-context@1.1.1(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+
+  '@radix-ui/react-direction@1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+
+  '@radix-ui/react-primitive@2.0.2(@types/react-dom@https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz)(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react-dom@https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz))(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      '@radix-ui/react-slot': 1.1.2(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+      react-dom: https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+      '@types/react-dom': https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz
+
+  '@radix-ui/react-slider@1.2.3(@types/react-dom@https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz)(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react-dom@https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz))(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      '@radix-ui/number': 1.1.0
+      '@radix-ui/primitive': 1.1.1
+      '@radix-ui/react-collection': 1.1.2(@types/react-dom@https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz)(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react-dom@https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz))(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-compose-refs': 1.1.1(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-context': 1.1.1(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-direction': 1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-primitive': 2.0.2(@types/react-dom@https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz)(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react-dom@https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz))(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-use-controllable-state': 1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-use-layout-effect': 1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-use-previous': 1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      '@radix-ui/react-use-size': 1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+      react-dom: https://registry.npmmirror.com/react-dom/-/react-dom-18.2.0.tgz(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+      '@types/react-dom': https://registry.npmmirror.com/@types/react-dom/-/react-dom-18.2.7.tgz
+
+  '@radix-ui/react-slot@1.1.2(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      '@radix-ui/react-compose-refs': 1.1.1(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+
+  '@radix-ui/react-use-callback-ref@1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+
+  '@radix-ui/react-use-controllable-state@1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      '@radix-ui/react-use-callback-ref': 1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+
+  '@radix-ui/react-use-layout-effect@1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+
+  '@radix-ui/react-use-previous@1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
+
+  '@radix-ui/react-use-size@1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)':
+    dependencies:
+      '@radix-ui/react-use-layout-effect': 1.1.0(@types/react@https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz)(react@https://registry.npmmirror.com/react/-/react-18.2.0.tgz)
+      react: https://registry.npmmirror.com/react/-/react-18.2.0.tgz
+    optionalDependencies:
+      '@types/react': https://registry.npmmirror.com/@types/react/-/react-18.2.20.tgz
 
   '@remix-run/router@https://registry.npmmirror.com/@remix-run/router/-/router-1.8.0.tgz': {}
 
