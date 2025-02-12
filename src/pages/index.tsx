@@ -42,7 +42,7 @@ function Home() {
         ) : (
           <>
             <div>{data?.login}</div>
-            <img src={data?.avatar_url} alt="" className="mx-auto w-32  rounded-full" />
+            {/* <img src={data?.avatar_url} alt="" className="w-32 mx-auto rounded-full" /> */}
           </>
         )}
       </div>
