@@ -35,7 +35,7 @@ export default function Intro() {
 
       {/* 하단: 프로필 정보 */}
       <div className='w-full bg-[#C9DDFB] px-6 py-2 flex-shrink-0'>
-        <div className="text-black text-xs sm:text-sm md:text-base font-['Noto_Sans_KR'] leading-tight text-left">
+        <div className="text-black text-xs sm:text-sm md:text-base leading-tight text-left">
           이름: 독팜희(禿팜喜)
           <br />
           학력: 연세대학교 싱크로나이즈드비행학과
