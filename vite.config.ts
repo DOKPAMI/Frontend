@@ -13,7 +13,4 @@ export default defineConfig({
       html2canvas: 'html2canvas-pro', // Alias for html2canvas
     },
   },
-  build: {
-    outDir: 'src/dist',
-  },
 });
