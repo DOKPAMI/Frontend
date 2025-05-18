@@ -4,7 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
 const Event = () => {
-  const [_, setSelectedCharacter] = useState(0);
+  const [selectedCharacter, setSelectedCharacter] = useState(0);
   const [status, setStatus] = useState<'default' | 'loggedIn' | 'downloaded'>('default');
 
   const characters = [
@@ -69,13 +69,24 @@ const Event = () => {
     beforeChange: (_: number, next: number) => setSelectedCharacter(next),
   };
 
-  // 로그인 로직 수정 필요
   const handleButtonClick = () => {
     if (status === 'default') {
       setStatus('loggedIn');
     } else if (status === 'loggedIn') {
       setStatus('downloaded');
+    } else if (status === 'downloaded') {
+      downloadImage();
     }
+  };
+
+  const downloadImage = () => {
+    const selectedChar = characters[selectedCharacter];
+    const link = document.createElement('a');
+    link.href = selectedChar.image;
+    link.download = `팜희_${selectedChar.type}_NFT.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   const getButtonText = () => {
@@ -112,6 +123,11 @@ const Event = () => {
           .slick-prev, .slick-next {
             z-index: 1;
           }
+          .character-image {
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: default;
+          }
         `}
       </style>
       <div className='bg-[url(/background.png)] bg-cover bg-center flex flex-col items-center w-screen max-w-[600px] h-screen overflow-hidden relative'>
@@ -134,7 +150,8 @@ const Event = () => {
                     <img
                       src={character.image}
                       alt={`${character.type} 캐릭터`}
-                      className='w-full h-auto object-contain'
+                      className='w-full h-auto object-contain character-image'
+                      onClick={() => window.open(character.image, '_blank')}
                     />
                     <img
                       src={character.nameImage}
