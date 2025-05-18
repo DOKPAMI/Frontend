@@ -2,61 +2,12 @@ import { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import { characters } from './characters';
 
 const Event = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(0);
   const [status, setStatus] = useState<'default' | 'loggedIn' | 'downloaded'>('default');
-
-  const characters = [
-    {
-      id: 1,
-      image: '/characters/images/char1.png',
-      nameImage: '/characters/names/name1.svg',
-      type: '연애',
-    },
-    {
-      id: 2,
-      image: '/characters/images/char2.png',
-      nameImage: '/characters/names/name2.svg',
-      type: '집순',
-    },
-    {
-      id: 3,
-      image: '/characters/images/char3.png',
-      nameImage: '/characters/names/name3.svg',
-      type: '갓생',
-    },
-    {
-      id: 4,
-      image: '/characters/images/char4.png',
-      nameImage: '/characters/names/name4.svg',
-      type: '리더',
-    },
-    {
-      id: 5,
-      image: '/characters/images/char5.png',
-      nameImage: '/characters/names/name5.svg',
-      type: '욜로',
-    },
-    {
-      id: 6,
-      image: '/characters/images/char6.png',
-      nameImage: '/characters/names/name6.svg',
-      type: 'N잡',
-    },
-    {
-      id: 7,
-      image: '/characters/images/char7.png',
-      nameImage: '/characters/names/name7.svg',
-      type: '인싸',
-    },
-    {
-      id: 8,
-      image: '/characters/images/char8.png',
-      nameImage: '/characters/names/name8.svg',
-      type: '열공',
-    },
-  ];
+  const [showDetail, setShowDetail] = useState(false);
 
   const settings = {
     dots: true,
@@ -92,7 +43,7 @@ const Event = () => {
   const getButtonText = () => {
     switch (status) {
       case 'default':
-        return '지갑 연결하고 NFT 받기';
+        return '구글 로그인하기';
       case 'loggedIn':
         return 'NFT 발급하기';
       case 'downloaded':
@@ -106,7 +57,7 @@ const Event = () => {
       case 'loggedIn':
         return '원하는 타입의 팜희 NFT를 발급받으면\n 몬스터 에너지를 받을 수 있어요.';
       case 'downloaded':
-        return 'NFT 발급이 완료되었어요!\n발급한 NFT는 수이 블록체인에 기록되어 있어요. Slush Wallet이나 독팜희 페이지에서 팜희 NFT를 확인할 수 있어요.';
+        return 'NFT 발급이 완료되었어요!\n발급한 NFT는 수이 블록체인에 기록되어 있어요. Slush Wallet이나 독팜희 페이지에서 NFT를 확인할 수 있어요.';
     }
   };
 
@@ -134,6 +85,27 @@ const Event = () => {
             -webkit-overflow-scrolling: none;
             overflow: hidden;
           }
+          .detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+          }
+          .detail-content {
+            background: white;
+            padding: 20px;
+            border-radius: 20px;
+            max-width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+          }
         `}
       </style>
       <div className='bg-[url(/background.png)] bg-cover bg-center flex flex-col items-center w-screen max-w-[600px] h-screen overflow-hidden relative event-container'>
@@ -147,26 +119,35 @@ const Event = () => {
         </div>
 
         {/* 캐릭터 카드 슬라이더 */}
-        <div className='absolute top-[12vh] xs:top-[15vh] sm:top-[15vh] md:top-[13vh] left-1/2 transform -translate-x-1/2 w-[75%] sm:w-[80%] max-w-[350px] sm:max-w-[400px] h-[55vh] xs:h-[50vh]'>
+        <div className='absolute top-[12vh] xs:top-[15vh] sm:top-[15vh] md:top-[13vh] left-1/2 transform -translate-x-1/2 w-[85%] sm:w-[90%] max-w-[400px] sm:max-w-[450px] h-[45vh] xs:h-[40vh]'>
           <Slider {...settings}>
             {characters.map((character) => (
               <div key={character.id} className='px-2 xs:px-3 sm:px-4 h-full'>
                 <div className='bg-white rounded-lg shadow-lg p-2 xs:p-2 sm:p-3 md:p-4 h-full flex flex-col'>
-                  <div className='flex-grow flex flex-col justify-center gap-3 xs:gap-4 sm:gap-5 md:gap-6 py-3 xs:py-4 sm:py-5 md:py-6'>
+                  <div className='flex-grow flex flex-col justify-center gap-1 xs:gap-2 sm:gap-3 md:gap-4 py-1 xs:py-2 sm:py-3 md:py-4'>
                     <img
                       src={character.image}
                       alt={`${character.type} 캐릭터`}
-                      className='w-[90%] h-auto object-contain character-image mx-auto'
+                      className='w-[75%] xs:w-[80%] h-auto object-contain character-image mx-auto'
                       onClick={() => window.open(character.image, '_blank')}
                     />
                     <img
                       src={character.nameImage}
                       alt={`${character.type} 이름`}
-                      className='w-[60%] xs:w-[50%] h-auto object-contain mx-auto'
+                      className='w-[45%] xs:w-[50%] h-auto object-contain mx-auto'
                     />
+                    <p className='text-center text-xs xs:text-sm font-["Jua"] text-gray-700'>
+                      {character.tagline}
+                    </p>
+                    <button
+                      onClick={() => setShowDetail(true)}
+                      className='text-xs xs:text-sm text-blue-500 font-["Jua"] hover:text-blue-700 mt-1'
+                    >
+                      상세보기
+                    </button>
                   </div>
-                  <div className='mt-2 xs:mt-3 sm:mt-4 md:mt-5 p-2 sm:p-2 bg-gray-50 rounded-lg'>
-                    <p className='text-sm xs:text-base sm:text-lg md:text-xl text-center font-["Jua"] text-gray-700 whitespace-pre-line'>
+                  <div className='mt-1 xs:mt-2 sm:mt-3 md:mt-4 p-1 xs:p-2 bg-gray-50 rounded-lg'>
+                    <p className='text-xs xs:text-sm sm:text-base md:text-lg text-center font-["Jua"] text-gray-700 whitespace-pre-line'>
                       {getDescriptionText()}
                     </p>
                   </div>
@@ -177,16 +158,38 @@ const Event = () => {
         </div>
 
         {/* 하단 버튼 */}
-        <div className='absolute bottom-[20vh] sm:bottom-[4vh] md:bottom-[3vh] w-full flex justify-center px-4'>
+        <div className='absolute bottom-[20vh] xs:bottom-[10vh] sm:bottom-[4vh] md:bottom-[3vh] w-full flex justify-center px-4'>
           <button
             onClick={handleButtonClick}
-            className='w-full max-w-[320px] h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center'
+            className='w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center'
           >
-            <span className='text-black text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap px-2'>
+            <span className='text-sm xs:text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap px-2'>
               {getButtonText()}
             </span>
           </button>
         </div>
+
+        {/* 상세보기 모달 */}
+        {showDetail && (
+          <div className='detail-modal' onClick={() => setShowDetail(false)}>
+            <div className='detail-content' onClick={(e) => e.stopPropagation()}>
+              <button
+                onClick={() => setShowDetail(false)}
+                className='absolute top-2 right-2 text-gray-500 hover:text-gray-700'
+              >
+                ✕
+              </button>
+              <div className='mt-4'>
+                <h2 className='text-xl font-bold font-["Jua"] mb-4'>
+                  {characters[selectedCharacter].type}
+                </h2>
+                <p className='text-base font-["Jua"] whitespace-pre-line'>
+                  {characters[selectedCharacter].description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
