@@ -105,9 +105,9 @@ const Event = () => {
       switch (status) {
         case 'default':
         case 'loggedIn':
-          return 'Choose your favorite type of Pamhee NFT\nand receive Monster Energy!';
+          return 'Choose your favorite Pamhee NFT\nand get a free Monster Energy!';
         case 'downloaded':
-          return 'You’ve successfully minted your Pamhee NFT!\nIt’s now on the Sui blockchain.\nCheck it out in Slush Wallet or on the Dokpamhee page!';
+          return 'Congratulations — your Pamhee NFT has been successfully minted!\nIt’s now live on the Sui blockchain.\nView it in your Slush Wallet or on the Dokpamhee page.';
       }
     } else {
       switch (status) {
