@@ -7,7 +7,7 @@ import { useConnectWallet, useWallets, useCurrentAccount } from '@mysten/dapp-ki
 import { ZkSendLink } from '@mysten/zksend';
 import { claimAssets } from '@/lib/zksend';
 import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
-
+import { useBuyProduct } from '@/hooks/useBuyProduct';
 const Event = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(0);
   const [status, setStatus] = useState<'default' | 'loggedIn' | 'downloaded'>('default');
@@ -16,6 +16,7 @@ const Event = () => {
   const wallets = useWallets();
   const { mutate: connect } = useConnectWallet();
   const account = useCurrentAccount();
+  const { buyEventProduct } = useBuyProduct();
 
   const settings = {
     dots: true,
@@ -56,7 +57,11 @@ const Event = () => {
         },
       );
     } else if (status === 'loggedIn') {
-      setStatus('downloaded');
+      buyEventProduct({
+        storeId: characters[selectedCharacter].storeId,
+        slotNumber: characters[selectedCharacter].slotNumber,
+      });
+      // setStatus('downloaded');
     } else if (status === 'downloaded') {
       downloadImage();
     }
