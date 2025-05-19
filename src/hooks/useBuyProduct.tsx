@@ -1,5 +1,5 @@
 import { useCurrentAccount, useSignAndExecuteTransaction } from '@mysten/dapp-kit';
-import { Transaction, TransactionObjectInput } from '@mysten/sui/transactions';
+import { Transaction } from '@mysten/sui/transactions';
 import { useToast } from './useToast';
 
 export function useBuyProduct() {
