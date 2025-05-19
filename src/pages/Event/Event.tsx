@@ -3,11 +3,18 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { characters } from './characters';
+import { useConnectWallet, useWallets, useCurrentAccount } from '@mysten/dapp-kit';
+import { ZkSendLink, ZkSendLinkBuilder } from '@mysten/zksend';
+import { claimAssets } from '@/lib/zksend';
 
 const Event = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(0);
   const [status, setStatus] = useState<'default' | 'loggedIn' | 'downloaded'>('default');
   const [showDetail, setShowDetail] = useState(false);
+  const [isClaiming, setIsClaiming] = useState(false);
+  const wallets = useWallets();
+  const { mutate: connect } = useConnectWallet();
+  const account = useCurrentAccount();
 
   const settings = {
     dots: true,
@@ -22,7 +29,31 @@ const Event = () => {
 
   const handleButtonClick = () => {
     if (status === 'default') {
-      setStatus('loggedIn');
+      setIsClaiming(true);
+      connect(
+        { wallet: wallets[0] },
+        {
+          onSuccess: async () => {
+            const claimLink = await fetch(
+              `${import.meta.env.VITE_BACKEND_URL}/zk/zk-send/mintPami`,
+              {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  recipient: account?.address || '',
+                }),
+              },
+            );
+            const claimLinkData = await claimLink.json();
+            console.log(claimLinkData);
+            const link = await ZkSendLink.fromUrl(claimLinkData);
+            const tx = await link.createClaimTransaction(account?.address!);
+            await claimAssets(tx, account?.address!, link.keypair);
+            setStatus('loggedIn');
+            setIsClaiming(false);
+          },
+        },
+      );
     } else if (status === 'loggedIn') {
       setStatus('downloaded');
     } else if (status === 'downloaded') {
@@ -158,13 +189,16 @@ const Event = () => {
         </div>
 
         {/* 하단 버튼 */}
+
         <div className='absolute bottom-[20vh] xs:bottom-[10vh] sm:bottom-[4vh] md:bottom-[3vh] w-full flex justify-center px-4'>
           <button
             onClick={handleButtonClick}
-            className='w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center'
+            disabled={isClaiming}
+            className='w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
+             disabled:cursor-not-allowed disabled:bg-gray-300'
           >
             <span className='text-sm xs:text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap px-2'>
-              {getButtonText()}
+              {isClaiming ? 'NFT 발급을 위한 세팅중...' : getButtonText()}
             </span>
           </button>
         </div>

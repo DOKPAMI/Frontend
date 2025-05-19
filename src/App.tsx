@@ -1,32 +1,22 @@
-import Routers from './Routers';
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-
-import { getFullnodeUrl } from '@mysten/sui/client';
 import { createNetworkConfig, SuiClientProvider, WalletProvider } from '@mysten/dapp-kit';
-import '@mysten/dapp-kit/dist/index.css';
 
-const queryClient = new QueryClient();
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import Routers from './Routers';
+import { registerSlushWallet } from '@mysten/slush-wallet';
 
 const { networkConfig } = createNetworkConfig({
-  localnet: { url: getFullnodeUrl('localnet') },
-  testnet: { url: getFullnodeUrl('testnet') },
-  testnet_suiscan: { url: 'https://rpc-testnet.suiscan.xyz:443' },
-  mainnet: { url: getFullnodeUrl('mainnet') },
+  // localnet: { url: getFullnodeUrl("localnet") },
+  // mainnet: { url: getFullnodeUrl("mainnet") },
+  testnet: { url: 'https://rpc-testnet.suiscan.xyz:443' },
 });
+const queryClient = new QueryClient();
+registerSlushWallet('Dokpami');
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <SuiClientProvider networks={networkConfig} defaultNetwork='testnet_suiscan'>
-        <WalletProvider
-          autoConnect
-          stashedWallet={{
-            name: 'DOKPAMI2',
-            network: 'testnet',
-          }}
-        >
+      <SuiClientProvider networks={networkConfig} defaultNetwork='testnet'>
+        <WalletProvider autoConnect={true}>
           <Routers />
         </WalletProvider>
       </SuiClientProvider>
