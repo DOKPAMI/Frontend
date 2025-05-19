@@ -1,8 +1,7 @@
 import { Transaction } from '@mysten/sui/transactions';
 import { SuiClient, getFullnodeUrl } from '@mysten/sui/client';
 import { fromBase64, toB64 } from '@mysten/bcs';
-import { Ed25519Keypair } from '@mysten/sui/keypairs';
-
+import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
 const client = new SuiClient({ url: getFullnodeUrl('testnet') });
 
 export async function createSponsoredTransaction(

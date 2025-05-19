@@ -4,8 +4,9 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { characters } from './characters';
 import { useConnectWallet, useWallets, useCurrentAccount } from '@mysten/dapp-kit';
-import { ZkSendLink, ZkSendLinkBuilder } from '@mysten/zksend';
+import { ZkSendLink } from '@mysten/zksend';
 import { claimAssets } from '@/lib/zksend';
+import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
 
 const Event = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(0);
@@ -48,7 +49,7 @@ const Event = () => {
             console.log(claimLinkData);
             const link = await ZkSendLink.fromUrl(claimLinkData);
             const tx = await link.createClaimTransaction(account?.address!);
-            await claimAssets(tx, account?.address!, link.keypair);
+            await claimAssets(tx, account?.address!, link.keypair as Ed25519Keypair);
             setStatus('loggedIn');
             setIsClaiming(false);
           },
