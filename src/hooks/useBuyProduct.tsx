@@ -68,6 +68,7 @@ export function useBuyProduct() {
     signAndExecuteTransaction(
       {
         transaction: tx.serialize(),
+        chain: 'sui:testnet',
       },
       {
         onSuccess: (data) => {
