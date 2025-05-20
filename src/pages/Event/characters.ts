@@ -23,7 +23,7 @@ export const characters: Character[] = [
 친구들과 어울리는 것도 좋지만, 애인과 함께하는 시간이 최우선! 장거리 연애도, 같은 학교 연애도 다 경험해 보고 싶어.
 
 📚 학점? 음... 연애에 집중하다 보면 조금 떨어질 수도 있지만, 사랑도 공부도 균형 있게 하고 싶어!`,
-    storeId: '0x287399326e3a6bc2adba989f8c2fcf0edf8faa5541663741d09cdd25a46b2cf3',
+    storeId: '0xb16a13bf154de85ffe9cacc8767b9cd8821d22b4e5d92e7b3754f057b34767e0',
     slotNumber: 10,
   },
   {
