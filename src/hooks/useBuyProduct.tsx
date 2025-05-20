@@ -3,13 +3,21 @@ import { Transaction } from '@mysten/sui/transactions';
 import { useToast } from './useToast';
 
 export function useBuyProduct() {
-  const packageId = '0x0f19d50ac07d766a43b84363fe3f1fd7598bbfa70dce84fbe73dc093122e0303';
+  const packageId = '0x07a5e74b3b575404a50b0de20002b183f118301cf37e308d3770634ec047a1f8';
   const { setToastState } = useToast();
   const { mutate: signAndExecuteTransaction } = useSignAndExecuteTransaction();
   const account = useCurrentAccount();
 
-  const buyEventProduct = ({ storeId, slotNumber }: { storeId: string; slotNumber: number }) => {
-    const collectionId = '0x895d1679f335d5e50dde29d604ca55362d03e98c68bdcad212060b14d196398a';
+  const buyEventProduct = ({
+    storeId,
+    slotNumber,
+    setStatus,
+  }: {
+    storeId: string;
+    slotNumber: number;
+    setStatus: (status: string) => void;
+  }) => {
+    const collectionId = '0x1731b154ac970f4e301a996b5cacc58f8b96c4971e1ff257a8a25bea2d457866';
 
     setToastState({
       type: 'loading',
@@ -68,6 +76,7 @@ export function useBuyProduct() {
             type: 'success',
             message: 'Buying product succeeded.',
           });
+          setStatus('downloaded');
         },
         onError: (err) => {
           console.log('Error', err);

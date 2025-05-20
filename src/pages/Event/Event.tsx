@@ -61,8 +61,8 @@ const Event = () => {
       buyEventProduct({
         storeId: characters[selectedCharacter].storeId,
         slotNumber: characters[selectedCharacter].slotNumber,
+        setStatus: () => setStatus('downloaded'),
       });
-      // setStatus('downloaded');
     } else if (status === 'downloaded') {
       downloadImage();
     }

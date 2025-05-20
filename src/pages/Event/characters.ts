@@ -23,8 +23,8 @@ export const characters: Character[] = [
 친구들과 어울리는 것도 좋지만, 애인과 함께하는 시간이 최우선! 장거리 연애도, 같은 학교 연애도 다 경험해 보고 싶어.
 
 📚 학점? 음... 연애에 집중하다 보면 조금 떨어질 수도 있지만, 사랑도 공부도 균형 있게 하고 싶어!`,
-    storeId: '0xb1cf2898f85c1f2f5dc296c6cacf046b4403b1145bac6e519021a3f2a06a3d36',
-    slotNumber: 1,
+    storeId: '0x287399326e3a6bc2adba989f8c2fcf0edf8faa5541663741d09cdd25a46b2cf3',
+    slotNumber: 10,
   },
   {
     id: 2,
@@ -89,8 +89,8 @@ MT? 과행사? 연고전? 가긴 가겠지만, 억지로 참여하고 싶지는 
 동아리? 여러 개 하는 게 기본이지! 여행도 자주 다니고, MT, 연고전 같은 이벤트는 빠질 수 없어! 연애도 중요하게 생각해. 뭐든 다 해봐야 후회가 없지!
 
 📚 학점? 음... 망할 수도 있겠지? 하지만 재수강도 하나의 경험이라고 생각하고, 그때그때 행복한 순간을 즐기는 게 내 대학생활 철학이야!`,
-    storeId: '0x2::sui_system_coin',
-    slotNumber: 5,
+    storeId: '0xf05b01f156820556d330565ad4ac5ab40c24b23fdf5bafd41872c9330e4224bb',
+    slotNumber: 9,
   },
   {
     id: 6,
