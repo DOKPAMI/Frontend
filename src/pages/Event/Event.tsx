@@ -13,6 +13,7 @@ const Event = () => {
   const [status, setStatus] = useState<'default' | 'loggedIn' | 'downloaded'>('default');
   const [showDetail, setShowDetail] = useState(false);
   const [isClaiming, setIsClaiming] = useState(false);
+  const [language, setLanguage] = useState<'ko' | 'en'>('ko');
   const wallets = useWallets();
   const { mutate: connect } = useConnectWallet();
   const account = useCurrentAccount();
@@ -78,23 +79,44 @@ const Event = () => {
   };
 
   const getButtonText = () => {
-    switch (status) {
-      case 'default':
-        return '구글 로그인하기';
-      case 'loggedIn':
-        return 'NFT 발급하기';
-      case 'downloaded':
-        return '이미지 다운받기';
+    if (language === 'en') {
+      switch (status) {
+        case 'default':
+          return 'Login with Google';
+        case 'loggedIn':
+          return 'Get NFT';
+        case 'downloaded':
+          return 'Download Image';
+      }
+    } else {
+      switch (status) {
+        case 'default':
+          return '구글 로그인하기';
+        case 'loggedIn':
+          return 'NFT 발급하기';
+        case 'downloaded':
+          return '이미지 다운받기';
+      }
     }
   };
 
   const getDescriptionText = () => {
-    switch (status) {
-      case 'default':
-      case 'loggedIn':
-        return '원하는 타입의 팜희 NFT를 발급받으면\n 몬스터 에너지를 받을 수 있어요.';
-      case 'downloaded':
-        return 'NFT 발급이 완료되었어요!\n발급한 NFT는 수이 블록체인에 기록되어 있어요. Slush Wallet이나 독팜희 페이지에서 NFT를 확인할 수 있어요.';
+    if (language === 'en') {
+      switch (status) {
+        case 'default':
+        case 'loggedIn':
+          return 'Choose your favorite Pamhee NFT\nand get a free Monster Energy!';
+        case 'downloaded':
+          return 'Congratulations — your Pamhee NFT has been successfully minted!\nIt’s now live on the Sui blockchain.\nView it in your Slush Wallet or on the Dokpamhee page.';
+      }
+    } else {
+      switch (status) {
+        case 'default':
+        case 'loggedIn':
+          return '원하는 타입의 팜희 NFT를 발급받으면\n 몬스터 에너지를 받을 수 있어요.';
+        case 'downloaded':
+          return 'NFT 발급이 완료되었어요!\n발급한 NFT는 수이 블록체인에 기록되어 있어요. Slush Wallet이나 독팜희 페이지에서 NFT를 확인할 수 있어요.';
+      }
     }
   };
 
@@ -150,9 +172,19 @@ const Event = () => {
         <div className='absolute top-[4vh] sm:top-[1vh] md:top-[1vh] w-full flex justify-center px-4'>
           <div className='relative bg-amber-200 rounded-[73px] overflow-hidden flex items-center justify-center px-6 py-2'>
             <span className='text-black text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap'>
-              독팜희 X 몬스터 에너지
+              {language === 'en' ? 'Dokpamhee X Monster Energy' : '독팜희 X 몬스터 에너지'}
             </span>
           </div>
+        </div>
+
+        {/* 언어 전환 버튼 */}
+        <div className='absolute top-[4vh] right-4'>
+          <button
+            onClick={() => setLanguage(language === 'ko' ? 'en' : 'ko')}
+            className='bg-white rounded-full px-3 py-1 text-sm font-["Jua"] shadow-md'
+          >
+            {language === 'ko' ? 'EN' : '한글'}
+          </button>
         </div>
 
         {/* 캐릭터 카드 슬라이더 */}
@@ -204,7 +236,11 @@ const Event = () => {
              disabled:cursor-not-allowed disabled:bg-gray-300'
           >
             <span className='text-sm xs:text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap px-2'>
-              {isClaiming ? 'NFT 발급을 위한 세팅중...' : getButtonText()}
+              {isClaiming
+                ? language === 'en'
+                  ? 'Setting up for NFT minting...'
+                  : 'NFT 발급을 위한 세팅중...'
+                : getButtonText()}
             </span>
           </button>
         </div>
