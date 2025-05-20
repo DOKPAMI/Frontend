@@ -1,10 +1,9 @@
 import { useCurrentAccount, useSignAndExecuteTransaction } from '@mysten/dapp-kit';
 import { Transaction } from '@mysten/sui/transactions';
-import { useToast } from './useToast';
+import { toast } from 'sonner';
 
 export function useBuyProduct() {
   const packageId = '0x07a5e74b3b575404a50b0de20002b183f118301cf37e308d3770634ec047a1f8';
-  const { setToastState } = useToast();
   const { mutate: signAndExecuteTransaction } = useSignAndExecuteTransaction();
   const account = useCurrentAccount();
 
@@ -19,10 +18,8 @@ export function useBuyProduct() {
   }) => {
     const collectionId = '0x1731b154ac970f4e301a996b5cacc58f8b96c4971e1ff257a8a25bea2d457866';
 
-    setToastState({
-      type: 'loading',
-      message: 'Request is being created...',
-    });
+    toast.dismiss();
+    toast.loading('Loading...');
 
     const tx = new Transaction();
     const [request] = tx.moveCall({
@@ -72,19 +69,13 @@ export function useBuyProduct() {
       },
       {
         onSuccess: (data) => {
-          console.log('Success! data:', data);
-          setToastState({
-            type: 'success',
-            message: 'Buying product succeeded.',
-          });
+          toast.dismiss();
+          toast.success(`Sucdess! digest: ${data.digest}`);
           setStatus('downloaded');
         },
         onError: (err) => {
-          console.log('Error', err);
-          setToastState({
-            type: 'error',
-            message: 'Something went wrong while buying the product. Please try again.',
-          });
+          toast.dismiss();
+          toast.error(`Error: ${err}`);
         },
       },
     );
