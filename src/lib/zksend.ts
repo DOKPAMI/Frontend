@@ -14,7 +14,7 @@ export async function createSponsoredTransaction(
     client,
   });
 
-  const response = await fetch('http://localhost:8080/zk/zk-send/sponsor', {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/zk/zk-send/sponsor`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -37,7 +37,7 @@ export async function executeSponsoredTransaction(
   digest: string,
   signature: string,
 ): Promise<{ digest: string }> {
-  const response = await fetch(`http://localhost:8080/zk/zk-send/execute`, {
+  const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/zk/zk-send/execute`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ digest, signature }),
