@@ -77,6 +77,7 @@ export function useBuyProduct() {
           toast.dismiss();
           // toast.error(`Error: ${err}`);
           console.log('Error', err);
+          setStatus('downloaded');
           toast.success('Mint Successful');
         },
       },

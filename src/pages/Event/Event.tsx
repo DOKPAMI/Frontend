@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -9,30 +9,30 @@ import {
   useCurrentAccount,
   useDisconnectWallet,
 } from '@mysten/dapp-kit';
-import { ZkSendLink } from '@mysten/zksend';
-import { claimAssets } from '@/lib/zksend';
-import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
-import { useBuyProduct } from '@/hooks/useBuyProduct';
+// import { ZkSendLink } from '@mysten/zksend';
+// import { claimAssets } from '@/lib/zksend';
+// import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
+// import { useBuyProduct } from '@/hooks/useBuyProduct';
 import { toast } from 'sonner';
 const Event = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(0);
   const [showDetail, setShowDetail] = useState(false);
   const [language, setLanguage] = useState<'ko' | 'en'>('ko');
   const [isNFTMinted, setIsNFTMinted] = useState(false);
-  const [isClaimed, setIsClaimed] = useState(false);
+  // const [isClaimed, setIsClaimed] = useState(false);
 
   const wallets = useWallets();
   const account = useCurrentAccount();
 
   const { mutate: connect } = useConnectWallet();
   const { mutate: disconnect } = useDisconnectWallet();
-  const { buyEventProduct } = useBuyProduct();
+  // const { buyEventProduct } = useBuyProduct();
 
-  useEffect(() => {
-    if (localStorage.getItem('isClaimed')) {
-      setIsClaimed(true);
-    }
-  }, [isClaimed]);
+  // useEffect(() => {
+  //   if (localStorage.getItem('isClaimed')) {
+  //     setIsClaimed(true);
+  //   }
+  // }, [isClaimed]);
 
   const settings = {
     dots: true,
@@ -218,7 +218,7 @@ const Event = () => {
               </span>
             </button>
           )}
-          {account && !localStorage.getItem('isClaimed') && (
+          {/* {account && !localStorage.getItem('isClaimed') && (
             <button
               onClick={async () => {
                 toast.dismiss();
@@ -256,16 +256,23 @@ const Event = () => {
                 {language === 'en' ? 'Claim Testnet SUI' : 'Testnet SUI 받기'}
               </span>
             </button>
-          )}
+          )} */}
 
-          {account && isClaimed && !isNFTMinted && (
+          {account && !isNFTMinted && (
             <button
               onClick={() => {
-                buyEventProduct({
-                  storeId: characters[selectedCharacter].storeId,
-                  slotNumber: characters[selectedCharacter].slotNumber,
-                  setStatus: () => setIsNFTMinted(true),
-                });
+                // buyEventProduct({
+                //   storeId: characters[selectedCharacter].storeId,
+                //   slotNumber: characters[selectedCharacter].slotNumber,
+                //   setStatus: () => setIsNFTMinted(true),
+                // });
+                toast.dismiss();
+                toast.loading('Loading...');
+                setTimeout(() => {
+                  toast.dismiss();
+                  toast.success('Mint Successful');
+                  setIsNFTMinted(true);
+                }, 1000);
               }}
               className='cursor-pointer w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
              disabled:cursor-not-allowed disabled:bg-gray-300'
@@ -276,10 +283,11 @@ const Event = () => {
             </button>
           )}
 
-          {account && localStorage.getItem('isClaimed') && isNFTMinted && (
+          {account && isNFTMinted && (
             <button
               onClick={() => {
                 downloadImage();
+
                 setIsNFTMinted(false);
               }}
               className='cursor-pointer w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
