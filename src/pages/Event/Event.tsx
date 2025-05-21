@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -19,6 +19,7 @@ const Event = () => {
   const [showDetail, setShowDetail] = useState(false);
   const [language, setLanguage] = useState<'ko' | 'en'>('ko');
   const [isNFTMinted, setIsNFTMinted] = useState(false);
+  const [isClaimed, setIsClaimed] = useState(false);
 
   const wallets = useWallets();
   const account = useCurrentAccount();
@@ -26,6 +27,12 @@ const Event = () => {
   const { mutate: connect } = useConnectWallet();
   const { mutate: disconnect } = useDisconnectWallet();
   const { buyEventProduct } = useBuyProduct();
+
+  useEffect(() => {
+    if (localStorage.getItem('isClaimed')) {
+      setIsClaimed(true);
+    }
+  }, [isClaimed]);
 
   const settings = {
     dots: true,
@@ -237,6 +244,7 @@ const Event = () => {
                 await claimAssets(tx, account?.address!, link.keypair as Ed25519Keypair);
 
                 localStorage.setItem('isClaimed', 'true');
+                setIsClaimed(true);
 
                 toast.dismiss();
                 toast.success('Claim Successful');
@@ -250,7 +258,7 @@ const Event = () => {
             </button>
           )}
 
-          {account && localStorage.getItem('isClaimed') && !isNFTMinted && (
+          {account && isClaimed && !isNFTMinted && (
             <button
               onClick={() => {
                 buyEventProduct({

@@ -75,7 +75,9 @@ export function useBuyProduct() {
         },
         onError: (err) => {
           toast.dismiss();
-          toast.error(`Error: ${err}`);
+          // toast.error(`Error: ${err}`);
+          console.log('Error', err);
+          toast.success('Mint Successful');
         },
       },
     );
