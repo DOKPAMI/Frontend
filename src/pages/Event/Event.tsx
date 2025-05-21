@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -19,6 +19,7 @@ const Event = () => {
   const [showDetail, setShowDetail] = useState(false);
   const [language, setLanguage] = useState<'ko' | 'en'>('ko');
   const [isNFTMinted, setIsNFTMinted] = useState(false);
+  const [loading, setLoading] = useState(false);
   // const [isClaimed, setIsClaimed] = useState(false);
 
   const wallets = useWallets();
@@ -33,6 +34,12 @@ const Event = () => {
   //     setIsClaimed(true);
   //   }
   // }, [isClaimed]);
+
+  useEffect(() => {
+    if (account) {
+      setLoading(false);
+    }
+  }, [account]);
 
   const settings = {
     dots: true,
@@ -183,6 +190,7 @@ const Event = () => {
           {!account && (
             <button
               onClick={() => {
+                setLoading(true);
                 const wallet = wallets.find((w) => w.name.includes('Slush'))
                   ? wallets.find((w) => w.name.includes('Slush'))
                   : wallets[0];
@@ -193,6 +201,7 @@ const Event = () => {
               }}
               className='w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
              disabled:cursor-not-allowed cursor-pointer disabled:bg-gray-300'
+              disabled={loading}
             >
               <span className='text-sm xs:text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap px-2'>
                 {language === 'en' ? 'Login with Google' : '구글 로그인하기'}
@@ -266,16 +275,19 @@ const Event = () => {
                 //   slotNumber: characters[selectedCharacter].slotNumber,
                 //   setStatus: () => setIsNFTMinted(true),
                 // });
+                setLoading(true);
                 toast.dismiss();
                 toast.loading('Loading...');
                 setTimeout(() => {
                   toast.dismiss();
                   toast.success('Mint Successful');
                   setIsNFTMinted(true);
+                  setLoading(false);
                 }, 1000);
               }}
               className='cursor-pointer w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
              disabled:cursor-not-allowed disabled:bg-gray-300'
+              disabled={loading}
             >
               <span className='text-sm xs:text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap px-2'>
                 {language === 'en' ? 'Get NFT' : 'NFT 발급하기'}
