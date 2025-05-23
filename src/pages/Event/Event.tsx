@@ -12,7 +12,7 @@ import {
 // import { ZkSendLink } from '@mysten/zksend';
 // import { claimAssets } from '@/lib/zksend';
 // import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
-// import { useBuyProduct } from '@/hooks/useBuyProduct';
+import { useBuyProduct } from '@/hooks/useBuyProduct';
 import { toast } from 'sonner';
 const Event = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(0);
@@ -27,7 +27,7 @@ const Event = () => {
 
   const { mutate: connect } = useConnectWallet();
   const { mutate: disconnect } = useDisconnectWallet();
-  // const { buyEventProduct } = useBuyProduct();
+  const { buyEventProduct } = useBuyProduct();
 
   // useEffect(() => {
   //   if (localStorage.getItem('isClaimed')) {
@@ -227,63 +227,19 @@ const Event = () => {
               </span>
             </button>
           )}
-          {/* {account && !localStorage.getItem('isClaimed') && (
-            <button
-              onClick={async () => {
-                toast.dismiss();
-                toast.loading('Processing... Please Wait..');
-
-                const claimLink = await fetch(
-                  `${import.meta.env.VITE_BACKEND_URL}/zk/zk-send/mintPami`,
-                  {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                      recipient: account?.address || '',
-                    }),
-                  },
-                );
-                const claimLinkData = await claimLink.json();
-
-                toast.dismiss();
-                toast.loading(`Getting claim link data...`);
-
-                const link = await ZkSendLink.fromUrl(claimLinkData);
-                const tx = link.createClaimTransaction(account?.address!);
-                await claimAssets(tx, account?.address!, link.keypair as Ed25519Keypair);
-
-                localStorage.setItem('isClaimed', 'true');
-                setIsClaimed(true);
-
-                toast.dismiss();
-                toast.success('Claim Successful');
-              }}
-              className='cursor-pointer w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
-             disabled:cursor-not-allowed disabled:bg-gray-300'
-            >
-              <span className='text-sm xs:text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap px-2'>
-                {language === 'en' ? 'Claim Testnet SUI' : 'Testnet SUI 받기'}
-              </span>
-            </button>
-          )} */}
 
           {account && !isNFTMinted && (
             <button
               onClick={() => {
-                // buyEventProduct({
-                //   storeId: characters[selectedCharacter].storeId,
-                //   slotNumber: characters[selectedCharacter].slotNumber,
-                //   setStatus: () => setIsNFTMinted(true),
-                // });
                 setLoading(true);
-                toast.dismiss();
-                toast.loading('Loading...');
-                setTimeout(() => {
-                  toast.dismiss();
-                  toast.success('Mint Successful');
-                  setIsNFTMinted(true);
-                  setLoading(false);
-                }, 1000);
+                buyEventProduct({
+                  storeId: characters[selectedCharacter].storeId,
+                  slotNumber: characters[selectedCharacter].slotNumber,
+                  setStatus: () => {
+                    setLoading(false);
+                    setIsNFTMinted(true);
+                  },
+                });
               }}
               className='cursor-pointer w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
              disabled:cursor-not-allowed disabled:bg-gray-300'
