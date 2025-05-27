@@ -28,7 +28,7 @@ export default function ResultQR({ finalResult }: ResultPageProps) {
         <div className='w-full flex justify-center py-4'>
           <QRCodeSVG
             className='w-full h-full max-w-[320px] max-h-[320px]'
-            value={`/balancegame/result/${finalResult}`}
+            value={`https://dokpami.onrender.com/balancegame/result/${finalResult}`}
           />
         </div>
 

@@ -55,7 +55,7 @@ export default function ResultPage() {
       >
         <h1 className='mb-8 text-xl'>
           나의 캐릭터는...{' '}
-          <span className='text-2xl text-blue-500 font-bold'>{resultInfo.title}</span> 이야!
+          <span className='text-2xl text-blue-500 font-bold'>{resultInfo.title}</span>야!
         </h1>
         <img
           src={resultInfo.imageURL}
