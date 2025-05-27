@@ -26,7 +26,7 @@ const Home = () => {
             className='w-full max-w-[320px] h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center'
           >
             <span className='text-black text-base font-["Jua"] sm:text-lg md:text-xl font-bold leading-none translate-y-[1px] whitespace-nowrap px-2'>
-              독팜희 X 몬스터 이벤트 참여하기
+              Get Exclusive NFT
             </span>
           </Link>
         </div>
