@@ -13,6 +13,7 @@ import {
 // import { claimAssets } from '@/lib/zksend';
 // import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
 import { useBuyProduct } from '@/hooks/useBuyProduct';
+import { Link } from 'react-router-dom';
 const Event = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(0);
   const [showDetail, setShowDetail] = useState(false);
@@ -128,9 +129,12 @@ const Event = () => {
         {/* 상단 텍스트 */}
         <div className='absolute top-[4vh] sm:top-[1vh] md:top-[1vh] w-full flex justify-center px-4'>
           <div className='relative bg-amber-200 rounded-[73px] overflow-hidden flex items-center justify-center px-6 py-2'>
-            <span className='text-black text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap'>
-              {language === 'en' ? 'Dokpamhee X Monster Energy' : '독팜희 X 몬스터 에너지'}
-            </span>
+            <Link
+              to='/'
+              className='text-black text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap'
+            >
+              {language === 'en' ? 'Get Exclusuive NFT' : '익스클루수이브 NFT 발급하기'}
+            </Link>
           </div>
         </div>
 
