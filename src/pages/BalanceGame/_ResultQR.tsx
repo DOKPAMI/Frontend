@@ -1,6 +1,7 @@
 import { BalanceGameResults } from '@/data/BalanceGameResult';
 import { useRef } from 'react';
 import { QRCodeSVG } from 'qrcode.react';
+import { Link } from 'react-router-dom';
 
 interface ResultPageProps {
   finalResult: string;
@@ -31,7 +32,9 @@ export default function ResultQR({ finalResult }: ResultPageProps) {
           />
         </div>
 
-        <div className='font-bold text-xl mb-5'>결과 확인하러 가기</div>
+        <Link to={`/balancegame/result/${resultInfo.id}`} className='font-bold text-xl mb-5'>
+          결과 확인하러 가기
+        </Link>
 
         <img src='/logo.png' alt='logo' className='w-[100px] my-4' />
       </div>
