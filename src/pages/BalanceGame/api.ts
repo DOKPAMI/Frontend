@@ -60,3 +60,19 @@ export const getTypePercentage = async ({
     return { typePercentage: '' };
   }
 };
+
+export const mintCharacterNFT = async (): Promise<{ totalTypeCount: number }> => {
+  try {
+    const response = await fetch('https://backend-60km.onrender.com/api/balancegames/results');
+    if (!response.ok) {
+      console.error('Failed to send data:', response.status);
+      return { totalTypeCount: 0 };
+    }
+    const data = await response.json();
+    const totalTypeCount = data.length;
+    return { totalTypeCount };
+  } catch (error) {
+    console.error('Error:', error);
+    return { totalTypeCount: 0 };
+  }
+};

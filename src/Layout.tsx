@@ -11,7 +11,7 @@ export default function Layout() {
   // const isQrTreasurePage = location.pathname.startsWith('/qrtreasure');
 
   return (
-    <div className='w-screen h-screen overflow-hidden bg-[#BEDEFE]'>
+    <div className='w-screen h-screen overflow-y-auto bg-[#BEDEFE]'>
       <div className='max-w-[600px] h-full mx-auto flex flex-col overflow-y-auto items-center justify-start'>
         {/* {!isQrTreasurePage && (
           <div className='w-full flex justify-between px-4 py-2'>

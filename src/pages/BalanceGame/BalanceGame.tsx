@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { BalanceGameQuestions } from '@/data/BalanceGameQuestions';
 import BalanceChoiceButton from './_BalanceChoiceButton';
-import ResultPage from './_ResultPage';
+import ResultQR from './_ResultQR';
 import { sendGameResult } from './api';
 
 export default function BalanceGame() {
@@ -29,7 +29,16 @@ export default function BalanceGame() {
 
       // indexOf()가 더 낮은(앞선) 쪽이 우선으로 순서 정렬
       // ex) '집순' 타입이 '공부' 타입과 동점일 경우 더 높은 우선 순위로 선택 됨.
-      const typePriorityOrder = ['감투', '집순', 'YOLO', '공부', 'N잡', '연애', '갓생', '인싸'];
+      const typePriorityOrder = [
+        'leader',
+        'home',
+        'yolo',
+        'study',
+        'njob',
+        'love',
+        'hardworking',
+        'sociable',
+      ];
 
       resultsWithMaxCount.sort((a, b) => {
         const aTypePriority = typePriorityOrder.indexOf(a);
@@ -45,25 +54,23 @@ export default function BalanceGame() {
   }, [results]);
 
   return (
-    <>
-      <h1 className='text-2xl font-bold mb-8'>대학 생활 밸런스 게임</h1>
-
+    <div className='bg-[url(/background.png)] bg-cover bg-center w-full h-full flex flex-col items-center justify-center font-["Jua"]'>
       {results.length === gameQuestions.length ? (
         finalResult ? (
           /* 모든 질문에 답변을 마쳤다면 결과 표시 */
-          <ResultPage finalResult={finalResult} />
+          <ResultQR finalResult={finalResult} />
         ) : (
           /* 모든 질문 답변 ~ finalResult 나오는데 걸리는 사이 (React Hook 고려)*/
-          <div>Loading Final Result..</div>
+          <div className='bg-white p-4 rounded-lg'>너의 유형을 계산중이야! 잠시만 기다려줘!</div>
         )
       ) : (
         /* 모든 질문에 아직 답변을 못 했다면 다음 질문 */
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center bg-white p-8 rounded-lg'>
           <div className='flex flex-col items-center'>
             <h2 className='text-md'>
               {results.length + 1}/{gameQuestions.length}
             </h2>
-            <h2 className='text-2xl mb-8'>{gameQuestions[results.length].topic}</h2>
+            <h2 className='text-2xl m-8'>{gameQuestions[results.length].topic}</h2>
             <div className='flex flex-col space-y-16'>
               <BalanceChoiceButton
                 label={gameQuestions[results.length].selects.top.select}
@@ -81,6 +88,6 @@ export default function BalanceGame() {
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }

@@ -1,19 +1,26 @@
 import { BalanceGameResults } from '@/data/BalanceGameResult';
 import { useEffect, useState, useRef } from 'react';
 import { getTotalTypeCount, getTypePercentage } from './api';
-import BalanceGameResultCapture from './_BalanceGameResultCapture';
+import { useParams } from 'react-router-dom';
+import { useDisconnectWallet, useWallets } from '@mysten/dapp-kit';
+import { useCurrentAccount } from '@mysten/dapp-kit';
+import { useConnectWallet } from '@mysten/dapp-kit';
+import { toast } from 'sonner';
 
-interface ResultPageProps {
-  finalResult: string;
-}
-
-export default function ResultPage({ finalResult }: ResultPageProps) {
+export default function ResultPage() {
+  const { id } = useParams();
   const [totalTypeCount, setTotalTypeCount] = useState(0);
   const [typePercentage, setTypePercentage] = useState('');
   const resultPageRef = useRef<HTMLDivElement | null>(null);
-  const [imgLoaded, setImgLoaded] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
+  const wallets = useWallets();
+  const account = useCurrentAccount();
+  const [loading, setLoading] = useState(false);
 
-  const resultInfo = BalanceGameResults[finalResult];
+  const { mutate: connect, isSuccess: isConnected } = useConnectWallet();
+  const { mutate: disconnect } = useDisconnectWallet();
+
+  const resultInfo = BalanceGameResults[id as keyof typeof BalanceGameResults];
 
   if (!resultInfo) return <div>결과를 찾을 수 없습니다.</div>;
 
@@ -25,35 +32,100 @@ export default function ResultPage({ finalResult }: ResultPageProps) {
       setTotalTypeCount(totalTypeCount);
       setTypePercentage(typePercentage);
     };
-    getResultData({ finalResult });
-  }, [finalResult]);
+    getResultData({ finalResult: id as string });
+  }, [id]);
+
+  useEffect(() => {
+    if (isConnected) {
+      setLoading(false);
+      toast.loading('구글 로그인 성공! NFT 발급 중입니다...');
+      setTimeout(() => {
+        toast.dismiss();
+        toast.success('NFT 발급 완료!');
+      }, 2000);
+    }
+  }, [isConnected]);
 
   return (
-    <>
-      <div id='result-page' ref={resultPageRef} className='flex flex-col items-center bg-[#88D0E5]'>
-        <h1 className='mb-8'>내가 고른 대학 생활은...</h1>
+    <div className='bg-[url(/background.png)] bg-cover bg-center w-full min-h-screen flex flex-col items-center justify-center font-["Jua"] py-8'>
+      <div
+        id='result-page'
+        ref={resultPageRef}
+        className='w-3/4 flex flex-col items-center bg-white p-4 rounded-lg overflow-y-auto max-h-[90vh]'
+      >
+        <h1 className='mb-8 text-xl'>
+          나의 캐릭터는...{' '}
+          <span className='text-2xl text-blue-500 font-bold'>{resultInfo.title}</span> 이야!
+        </h1>
         <img
           src={resultInfo.imageURL}
           id='result-img'
-          className='w-48 h-48 object-contain mb-4'
-          crossOrigin='anonymous' // CORS 설정 추가
-          onLoad={() => setImgLoaded(true)}
+          className='w-full max-w-[320px] max-h-[320px] object-contain mb-4'
         />
-        <div className='font-bold text-xl mb-5'>{resultInfo.title}</div>
-        <div className='text-sm mb-4'>{resultInfo.subtitle}</div>
-        <div className='text-sm mb-4'>
+        <div className='text-md my-2'>{resultInfo.subtitle}</div>
+        <button
+          onClick={() => setShowDetail((prev) => !prev)}
+          className='text-sm text-blue-500 font-["Jua"] hover:text-blue-700 '
+        >
+          상세보기
+        </button>
+
+        <div className='text-sm my-4'>
           전체 {totalTypeCount}개의 결과 중 {typePercentage}%가 이 유형이에요!
         </div>
-        <div className='mb-10 whitespace-pre-line text-sm'>{resultInfo.content}</div>
+
+        {showDetail && (
+          <div className='detail-modal' onClick={() => setShowDetail(false)}>
+            <div className='detail-content' onClick={(e) => e.stopPropagation()}>
+              <div className='mb-10 whitespace-pre-line text-sm'>{resultInfo.content}</div>
+            </div>
+          </div>
+        )}
+        {!account && (
+          <button
+            onClick={() => {
+              setLoading(true);
+              const wallet = wallets.find((w) => w.name.includes('Slush'))
+                ? wallets.find((w) => w.name.includes('Slush'))
+                : wallets[0];
+              // setIsClaiming(true);
+              if (wallet) {
+                connect({ wallet });
+              } else {
+                window.alert('구글 로그인 실패. 관리자에게 문의해주세요!');
+              }
+            }}
+            className='w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
+             disabled:cursor-not-allowed cursor-pointer disabled:bg-gray-300'
+            disabled={loading}
+          >
+            <span className='text-sm xs:text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap px-2'>
+              구글 로그인하고 NFT 받기
+            </span>
+          </button>
+        )}
+        {account && (
+          <button
+            onClick={() => {
+              const wallet = wallets.find((w) => w.name.includes('Slush'))
+                ? wallets.find((w) => w.name.includes('Slush'))
+                : wallets[0];
+
+              if (wallet) {
+                disconnect();
+              }
+            }}
+            className='w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
+             disabled:cursor-not-allowed cursor-pointer disabled:bg-gray-300'
+          >
+            <span className='text-sm xs:text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap px-2'>
+              로그아웃 하기
+            </span>
+          </button>
+        )}
+        <img src='/logo.png' alt='logo' className='w-[100px] my-4' />
       </div>
-      {imgLoaded && <BalanceGameResultCapture resultPageRef={resultPageRef} />}
-      <button
-        className='mb-8 font-bold text-sm bg-white border-2 border-black rounded px-3 py-2 hover:bg-blue-600'
-        onClick={() => {}}
-      >
-        Google Login하고 더 많은 이벤트 참여하기
-      </button>
-      <div className='text-sm font-bold'>BlockBlock x DOKPAMI</div>
-    </>
+      {/* {imgLoaded && <BalanceGameResultCapture resultPageRef={resultPageRef} />} */}
+    </div>
   );
 }

@@ -13,7 +13,6 @@ import {
 // import { claimAssets } from '@/lib/zksend';
 // import { Ed25519Keypair } from '@mysten/sui/keypairs/ed25519';
 import { useBuyProduct } from '@/hooks/useBuyProduct';
-import { toast } from 'sonner';
 const Event = () => {
   const [selectedCharacter, setSelectedCharacter] = useState(0);
   const [showDetail, setShowDetail] = useState(false);
