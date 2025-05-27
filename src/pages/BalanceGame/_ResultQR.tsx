@@ -28,11 +28,11 @@ export default function ResultQR({ finalResult }: ResultPageProps) {
         <div className='w-full flex justify-center py-4'>
           <QRCodeSVG
             className='w-full h-full max-w-[320px] max-h-[320px]'
-            value={`/balancegame/result/${resultInfo.id}`}
+            value={`/balancegame/result/${finalResult}`}
           />
         </div>
 
-        <Link to={`/balancegame/result/${resultInfo.id}`} className='font-bold text-xl mb-5'>
+        <Link to={`/balancegame/result/${finalResult}`} className='font-bold text-xl mb-5'>
           결과 확인하러 가기
         </Link>
 
