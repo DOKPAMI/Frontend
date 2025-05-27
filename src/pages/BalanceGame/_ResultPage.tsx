@@ -1,7 +1,7 @@
 import { BalanceGameResults } from '@/data/BalanceGameResult';
 import { useEffect, useState, useRef } from 'react';
 import { getTotalTypeCount, getTypePercentage } from './api';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDisconnectWallet, useWallets } from '@mysten/dapp-kit';
 import { useCurrentAccount } from '@mysten/dapp-kit';
 import { useConnectWallet } from '@mysten/dapp-kit';
@@ -48,6 +48,16 @@ export default function ResultPage() {
 
   return (
     <div className='bg-[url(/background.png)] bg-cover bg-center w-full min-h-screen flex flex-col items-center justify-center font-["Jua"] py-8'>
+      <div className='absolute top-[4vh] sm:top-[1vh] md:top-[1vh] w-full flex justify-center px-4'>
+        <div className='relative bg-amber-200 rounded-[73px] overflow-hidden flex items-center justify-center px-6 py-2'>
+          <Link
+            to='/'
+            className='text-black text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap'
+          >
+            독팜희 밸런스게임
+          </Link>
+        </div>
+      </div>
       <div
         id='result-page'
         ref={resultPageRef}

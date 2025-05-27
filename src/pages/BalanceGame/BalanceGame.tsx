@@ -3,6 +3,7 @@ import { BalanceGameQuestions } from '@/data/BalanceGameQuestions';
 import BalanceChoiceButton from './_BalanceChoiceButton';
 import ResultQR from './_ResultQR';
 import { sendGameResult } from './api';
+import { Link } from 'react-router-dom';
 
 export default function BalanceGame() {
   const gameQuestions = BalanceGameQuestions;
@@ -55,6 +56,16 @@ export default function BalanceGame() {
 
   return (
     <div className='bg-[url(/background.png)] bg-cover bg-center w-full h-full flex flex-col items-center justify-center font-["Jua"]'>
+      <div className='absolute top-[4vh] sm:top-[1vh] md:top-[1vh] w-full flex justify-center px-4'>
+        <div className='relative bg-amber-200 rounded-[73px] overflow-hidden flex items-center justify-center px-6 py-2'>
+          <Link
+            to='/'
+            className='text-black text-base sm:text-lg md:text-xl font-bold font-["Jua"] leading-none translate-y-[1px] whitespace-nowrap'
+          >
+            독팜희 밸런스게임
+          </Link>
+        </div>
+      </div>
       {results.length === gameQuestions.length ? (
         finalResult ? (
           /* 모든 질문에 답변을 마쳤다면 결과 표시 */
