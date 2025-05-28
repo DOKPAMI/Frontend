@@ -25,7 +25,7 @@ export const sendGameResult = async ({ user, resultType }: BalanceGameResult) =>
 
 export const mintNFT = async ({ user, name }: any) => {
   try {
-    const response = await fetch('http://localhost:8080/zk/zk-send/balanceGame', {
+    const response = await fetch('https://backend-iiqs.onrender.com/zk/zk-send/balanceGame', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ user, name }),

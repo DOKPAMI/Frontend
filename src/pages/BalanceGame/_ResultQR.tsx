@@ -15,7 +15,7 @@ export default function ResultQR({ finalResult }: ResultPageProps) {
   if (!resultInfo) return <div>결과를 찾을 수 없습니다.</div>;
 
   return (
-    <div className='bg-[url(/background.png)] bg-cover bg-center w-full h-full flex flex-col items-center justify-center'>
+    <div className='bg-[url(/background.png)] bg-cover bg-center w-full h-full flex flex-col items-center justify-center font-["Jua"]'>
       <div
         id='result-page'
         ref={resultPageRef}
