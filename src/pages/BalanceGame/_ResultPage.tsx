@@ -89,7 +89,7 @@ export default function ResultPage() {
         >
           상세보기
         </button> */}
-        <div className='text-sm my-4'>
+        <div className='text-sm mb-2'>
           전체 {totalTypeCount}개의 결과 중 {typePercentage}%가 이 유형이에요!
         </div>
         {/* {showDetail && (
