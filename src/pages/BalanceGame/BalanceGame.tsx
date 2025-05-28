@@ -37,7 +37,7 @@ export default function BalanceGame() {
   }, [results]);
 
   return (
-    <div className='bg-[url(/background.png)] bg-cover bg-center w-full h-full flex flex-col items-center justify-center font-["Jua"]'>
+    <div className='bg-[url(/background.png)] bg-cover bg-center w-full h-full flex flex-col items-center justify-center '>
       <div className='absolute top-[4vh] sm:top-[1vh] md:top-[1vh] w-full flex justify-center px-4'>
         <div className='relative bg-amber-200 rounded-[73px] overflow-hidden flex items-center justify-center px-6 py-2'>
           <Link
