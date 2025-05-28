@@ -27,28 +27,12 @@ export default function BalanceGame() {
       const resultsWithMaxCount = Object.keys(resultCount).filter(
         (key) => resultCount[key] === maxResultCount,
       );
+      // 동점인 결과들 중에서 랜덤으로 하나 선택
+      const randomIndex = Math.floor(Math.random() * resultsWithMaxCount.length);
+      const selectedResult = resultsWithMaxCount[randomIndex];
 
-      // indexOf()가 더 낮은(앞선) 쪽이 우선으로 순서 정렬
-      // ex) '집순' 타입이 '공부' 타입과 동점일 경우 더 높은 우선 순위로 선택 됨.
-      const typePriorityOrder = [
-        'leader',
-        'home',
-        'yolo',
-        'study',
-        'njob',
-        'love',
-        'hardworking',
-        'sociable',
-      ];
-
-      resultsWithMaxCount.sort((a, b) => {
-        const aTypePriority = typePriorityOrder.indexOf(a);
-        const bTypePriority = typePriorityOrder.indexOf(b);
-        return aTypePriority - bTypePriority;
-      });
-
-      sendGameResult({ user: 'unregistered', resultType: resultsWithMaxCount[0] }).then(() => {
-        setFinalResult(resultsWithMaxCount[0]);
+      sendGameResult({ user: 'unregistered', resultType: selectedResult }).then(() => {
+        setFinalResult(selectedResult);
       });
       console.log('보냈음!', finalResult);
     }
@@ -76,20 +60,24 @@ export default function BalanceGame() {
         )
       ) : (
         /* 모든 질문에 아직 답변을 못 했다면 다음 질문 */
-        <div className='flex flex-col items-center bg-white p-8 rounded-lg'>
+        <div className='flex flex-col items-center bg-white p-8 rounded-lg w-5/6'>
           <div className='flex flex-col items-center'>
             <h2 className='text-md'>
               {results.length + 1}/{gameQuestions.length}
             </h2>
-            <h2 className='text-2xl m-8'>{gameQuestions[results.length].topic}</h2>
-            <div className='flex flex-col space-y-16'>
+            <h2 className='text-xl sm:text-xl md:text-2xl my-8'>
+              {gameQuestions[results.length].topic}
+            </h2>
+            <div className='w-full flex flex-col space-y-16'>
               <BalanceChoiceButton
+                color='blue'
                 label={gameQuestions[results.length].selects.top.select}
                 onClick={() => {
                   handleChoiceButton(gameQuestions[results.length].selects.top.type);
                 }}
               />
               <BalanceChoiceButton
+                color='yellow'
                 label={gameQuestions[results.length].selects.bottom.select}
                 onClick={() => {
                   handleChoiceButton(gameQuestions[results.length].selects.bottom.type);

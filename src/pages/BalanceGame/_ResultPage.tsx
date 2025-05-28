@@ -12,7 +12,7 @@ export default function ResultPage() {
   const [totalTypeCount, setTotalTypeCount] = useState(0);
   const [typePercentage, setTypePercentage] = useState('');
   const resultPageRef = useRef<HTMLDivElement | null>(null);
-  const [showDetail, setShowDetail] = useState(false);
+  // const [showDetail, setShowDetail] = useState(false);
   const wallets = useWallets();
   const account = useCurrentAccount();
   const [loading, setLoading] = useState(false);
@@ -63,34 +63,40 @@ export default function ResultPage() {
         ref={resultPageRef}
         className='w-3/4 flex flex-col items-center bg-white p-4 rounded-lg overflow-y-auto max-h-[90vh]'
       >
-        <h1 className='mb-8 text-xl'>
-          나의 캐릭터는...{' '}
-          <span className='text-2xl text-blue-500 font-bold'>{resultInfo.title}</span>야!
-        </h1>
+        <h1 className=' text-xl'>나의 캐릭터는</h1>
+        <p className='text-2xl text-blue-500 font-bold'>{resultInfo.title}</p>
         <img
           src={resultInfo.imageURL}
           id='result-img'
           className='w-full max-w-[320px] max-h-[320px] object-contain mb-4'
         />
+        <div className='flex flex-wrap gap-2 my-4'>
+          {resultInfo.keywords.map((keyword) => (
+            <span
+              key={keyword}
+              className='text-sm bg-yellow-300 rounded-full px-2 py-1 text-black font-["Jua"]'
+            >
+              {keyword}
+            </span>
+          ))}
+        </div>
         <div className='text-md my-2'>{resultInfo.subtitle}</div>
-        <button
+        {/* <button
           onClick={() => setShowDetail((prev) => !prev)}
           className='text-sm text-blue-500 font-["Jua"] hover:text-blue-700 '
         >
           상세보기
-        </button>
-
+        </button> */}
         <div className='text-sm my-4'>
           전체 {totalTypeCount}개의 결과 중 {typePercentage}%가 이 유형이에요!
         </div>
-
-        {showDetail && (
+        {/* {showDetail && (
           <div className='detail-modal' onClick={() => setShowDetail(false)}>
             <div className='detail-content' onClick={(e) => e.stopPropagation()}>
               <div className='mb-10 whitespace-pre-line text-sm'>{resultInfo.content}</div>
             </div>
           </div>
-        )}
+        )} */}
         {!account && (
           <button
             onClick={() => {

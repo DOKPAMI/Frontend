@@ -2,11 +2,14 @@
 interface BalanceChoiceButtonProps {
   label: string;
   onClick: () => void;
+  color: 'blue' | 'yellow';
 }
-export default function BalanceChoiceButton({ label, onClick }: BalanceChoiceButtonProps) {
+export default function BalanceChoiceButton({ label, onClick, color }: BalanceChoiceButtonProps) {
   return (
     <button
-      className='cursor-pointer py-2 w-96 border-2 border-black bg-yellow-400 active:bg-yellow-700 rounded-lg'
+      className={`cursor-pointer py-2 w-full border-2 border-black ${
+        color === 'yellow' ? 'bg-yellow-300 ' : 'bg-blue-300'
+      } rounded-lg text-center px-2 text-sm sm:text-base md:text-lg`}
       onClick={onClick}
     >
       {label}
