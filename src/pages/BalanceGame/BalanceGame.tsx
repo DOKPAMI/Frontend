@@ -58,12 +58,12 @@ export default function BalanceGame() {
         )
       ) : (
         /* 모든 질문에 아직 답변을 못 했다면 다음 질문 */
-        <div className='flex flex-col items-center bg-white p-8 rounded-lg w-5/6 h-1/3'>
+        <div className='flex flex-col items-center bg-white p-8 rounded-lg w-5/6 min-h-[50vh]'>
           <div className='flex flex-col items-center'>
             <h2 className='text-md'>
               {results.length + 1}/{gameQuestions.length}
             </h2>
-            <h2 className='text-xl sm:text-xl md:text-2xl my-8'>
+            <h2 className='text-xl sm:text-xl md:text-2xl my-4'>
               {gameQuestions[results.length].topic}
             </h2>
             <div className='w-full flex flex-col space-y-8'>
