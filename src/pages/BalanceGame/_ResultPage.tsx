@@ -74,8 +74,11 @@ export default function ResultPage() {
         />
         <div className='flex flex-wrap gap-2 my-4'>
           {resultInfo.keywords.map((keyword) => (
-            <span key={keyword} className='text-sm bg-blue-300 rounded-full px-2 py-1 text-black '>
-              {keyword}
+            <span
+              key={keyword}
+              className='text-[11px] bg-blue-300 rounded-full px-2 py-1 text-black '
+            >
+              #{keyword}
             </span>
           ))}
         </div>
