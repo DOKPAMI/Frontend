@@ -1,6 +1,6 @@
 import { BalanceGameResults } from '@/data/BalanceGameResult';
 import { useEffect, useState, useRef } from 'react';
-import { getTotalTypeCount, getTypePercentage } from './api';
+import { getTotalTypeCount, getTypePercentage, mintNFT, sendGameResult } from './api';
 import { Link, useParams } from 'react-router-dom';
 import { useDisconnectWallet, useWallets } from '@mysten/dapp-kit';
 import { useCurrentAccount } from '@mysten/dapp-kit';
@@ -39,6 +39,8 @@ export default function ResultPage() {
     if (isConnected) {
       setLoading(false);
       toast.loading('구글 로그인 성공! NFT 발급 중입니다...');
+      sendGameResult({ user: account?.address || 'unregistered', resultType: id as string });
+      mintNFT({ user: account?.address || '', name: id });
       setTimeout(() => {
         toast.dismiss();
         toast.success('NFT 발급 완료!');
@@ -61,7 +63,7 @@ export default function ResultPage() {
       <div
         id='result-page'
         ref={resultPageRef}
-        className='w-3/4 flex flex-col items-center bg-white p-4 rounded-lg overflow-y-auto max-h-[90vh]'
+        className='w-3/4 flex flex-col items-center bg-white p-4 rounded-lg overflow-y-auto max-h-[90vh] my-[1vh]'
       >
         <h1 className=' text-xl'>나의 캐릭터는</h1>
         <p className='text-2xl text-blue-500 font-bold'>{resultInfo.title}</p>
@@ -74,7 +76,7 @@ export default function ResultPage() {
           {resultInfo.keywords.map((keyword) => (
             <span
               key={keyword}
-              className='text-sm bg-yellow-300 rounded-full px-2 py-1 text-black font-["Jua"]'
+              className='text-sm bg-blue-300 rounded-full px-2 py-1 text-black font-["Jua"]'
             >
               {keyword}
             </span>

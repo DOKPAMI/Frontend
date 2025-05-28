@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { BalanceGameQuestions } from '@/data/BalanceGameQuestions';
 import BalanceChoiceButton from './_BalanceChoiceButton';
 import ResultQR from './_ResultQR';
-import { sendGameResult } from './api';
 import { Link } from 'react-router-dom';
 
 export default function BalanceGame() {
@@ -31,10 +30,9 @@ export default function BalanceGame() {
       const randomIndex = Math.floor(Math.random() * resultsWithMaxCount.length);
       const selectedResult = resultsWithMaxCount[randomIndex];
 
-      sendGameResult({ user: 'unregistered', resultType: selectedResult }).then(() => {
-        setFinalResult(selectedResult);
-      });
-      console.log('보냈음!', finalResult);
+      setFinalResult(selectedResult);
+
+      console.log('보냈음!', selectedResult);
     }
   }, [results]);
 
@@ -60,7 +58,7 @@ export default function BalanceGame() {
         )
       ) : (
         /* 모든 질문에 아직 답변을 못 했다면 다음 질문 */
-        <div className='flex flex-col items-center bg-white p-8 rounded-lg w-5/6'>
+        <div className='flex flex-col items-center bg-white p-8 rounded-lg w-5/6 h-1/3'>
           <div className='flex flex-col items-center'>
             <h2 className='text-md'>
               {results.length + 1}/{gameQuestions.length}
@@ -68,7 +66,7 @@ export default function BalanceGame() {
             <h2 className='text-xl sm:text-xl md:text-2xl my-8'>
               {gameQuestions[results.length].topic}
             </h2>
-            <div className='w-full flex flex-col space-y-16'>
+            <div className='w-full flex flex-col space-y-8'>
               <BalanceChoiceButton
                 color='blue'
                 label={gameQuestions[results.length].selects.top.select}

@@ -19,7 +19,7 @@ export default function ResultQR({ finalResult }: ResultPageProps) {
       <div
         id='result-page'
         ref={resultPageRef}
-        className='w-3/4 flex flex-col items-center bg-white p-4 rounded-lg'
+        className='w-3/4 flex flex-col items-center bg-white p-4 rounded-lg my-[1vh]'
       >
         <h1 className='mb-8 text-xl'>
           나의 캐릭터는...{' '}

@@ -1,6 +1,6 @@
 export default function Intro() {
   return (
-    <div className='w-full h-screen bg-[#EBF3FE] flex flex-col overflow-hidden'>
+    <div id='intro' className='w-full h-screen bg-[#EBF3FE] flex flex-col overflow-hidden'>
       {/* 상단: 제목, 부제목, 소개 */}
       <div className='px-6 py-8 sm:py-6 md:py-4 flex-shrink-0'>
         <h1 className='font-bold text-4xl sm:text-5xl md:text-6xl mb-2 sm:mb-3'>DOKPAMI</h1>
@@ -35,7 +35,7 @@ export default function Intro() {
 
       {/* 하단: 프로필 정보 */}
       <div className='w-full bg-[#C9DDFB] px-6 py-2 flex-shrink-0'>
-        <div className="text-black text-xs sm:text-sm md:text-base leading-tight text-left">
+        <div className='text-black text-xs sm:text-sm md:text-base leading-tight text-left'>
           이름: 독팜희(禿팜喜)
           <br />
           학력: 연세대학교 싱크로나이즈드비행학과

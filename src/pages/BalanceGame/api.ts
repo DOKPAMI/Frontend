@@ -23,6 +23,26 @@ export const sendGameResult = async ({ user, resultType }: BalanceGameResult) =>
   }
 };
 
+export const mintNFT = async ({ user, name }: any) => {
+  try {
+    const response = await fetch('http://localhost:8080/zk/zk-send/balanceGame', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ user, name }),
+    });
+
+    if (!response.ok) {
+      console.error('Failed to send data:', response.status);
+      return;
+    }
+
+    const data = await response.json();
+    console.log('Response data:', data);
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
 export const getTotalTypeCount = async (): Promise<{ totalTypeCount: number }> => {
   try {
     const response = await fetch('https://backend-60km.onrender.com/api/balancegames/results');
