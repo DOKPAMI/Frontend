@@ -76,7 +76,7 @@ export default function ResultPage() {
           {resultInfo.keywords.map((keyword) => (
             <span
               key={keyword}
-              className='text-[11px] bg-blue-300 rounded-full px-2 py-1 text-black '
+              className='text-[11px] bg-blue-500 rounded-full px-2 py-1 text-white '
             >
               #{keyword}
             </span>
@@ -113,7 +113,7 @@ export default function ResultPage() {
                 window.alert('구글 로그인 실패. 관리자에게 문의해주세요!');
               }
             }}
-            className='w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black overflow-hidden flex items-center justify-center
+            className='w-full max-w-[320px] h-10 xs:h-12 relative bg-amber-200 rounded-[73px] shadow-[0px_1px_1px_0px_rgba(0,0,0,0.25)] outline-2 outline-offset-[-2px] outline-black  flex items-center justify-center
              disabled:cursor-not-allowed cursor-pointer disabled:bg-gray-300'
             disabled={loading}
           >

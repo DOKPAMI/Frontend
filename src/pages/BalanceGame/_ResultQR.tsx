@@ -32,7 +32,10 @@ export default function ResultQR({ finalResult }: ResultPageProps) {
           />
         </div>
 
-        <Link to={`/balancegame/result/${finalResult}`} className='font-bold text-xl mb-5'>
+        <Link
+          to={`/balancegame/result/${finalResult}`}
+          className='font-bold text-blue-500 text-xl mb-5'
+        >
           결과 확인하러 가기
         </Link>
 
